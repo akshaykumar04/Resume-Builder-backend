@@ -44,16 +44,6 @@ const PageController = () => {
           <i className="material-icons">save</i>
         </div>
 
-        <div className="text-gray-400 p-3">|</div>
-
-        <a
-          className="p-3 hover:bg-gray-200 cursor-pointer flex"
-          href="https://docs.rxresu.me/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="material-icons">help_outline</i>
-        </a>
       </div>
     </div>
   );

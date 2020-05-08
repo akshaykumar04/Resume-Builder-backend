@@ -5,7 +5,7 @@ const MarkdownHelpText = ({ className }) => {
   return (
     <div className={className}>
       <p className="text-gray-800 text-xs">
-        <Trans i18nKey="markdownHelpText">
+        <Trans >
           You can use
           <a
             className="text-blue-600 hover:underline"
