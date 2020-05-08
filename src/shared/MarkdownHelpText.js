@@ -11,7 +11,7 @@ const MarkdownHelpText = ({ className }) => {
             className="text-blue-600 hover:underline"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+            href="#"
           >
             GitHub Flavored Markdown
           </a>

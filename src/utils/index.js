@@ -141,7 +141,7 @@ const saveAsPdf = (pageRef, panZoomRef, quality, type) =>
         }
 
         doc.addImage(image, 'JPEG', marginX, marginY, canvasWidth, canvasHeight, null, 'SLOW');
-        doc.save(`RxResume_${Date.now()}.pdf`);
+        doc.save(`ResumeBuilder-Human3_${Date.now()}.pdf`);
         resolve();
       });
     }, 250);
@@ -181,7 +181,7 @@ const saveAsMultiPagePdf = (pageRef, panZoomRef, quality) =>
           heightLeft -= pageHeight;
         }
 
-        doc.save(`RxResume_${Date.now()}.pdf`);
+        doc.save(`ResumeBuilder-Human3_${Date.now()}.pdf`);
         resolve();
       });
     }, 250);
