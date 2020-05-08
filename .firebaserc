@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "resume-builder-app-994e9"
+  },
+  "targets": {
+    "resume-builder-app-994e9": {
+      "hosting": {
+        "app": [
+          "rx-resume-builder-app-994e9"
+        ],
+        "docs": [
+          "docs-resume-builder-app-994e9"
+        ]
+      }
+    }
   }
 }
