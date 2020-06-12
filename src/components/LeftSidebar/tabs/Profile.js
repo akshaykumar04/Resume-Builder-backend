@@ -1,10 +1,43 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import * as firebase from "firebase/app";
+import "firebase/database";
 
 import TextField from '../../../shared/TextField';
 
 const ProfileTab = ({ data, onChange }) => {
   const { t } = useTranslation('leftSidebar');
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+   }
+
+
+
+
+  function writeUserData() {
+    firebase.database().ref('users/').set({
+      name: data.profile.firstName,
+      email: data.profile.email,
+      profile_picture : data.profile.photo
+    
+    });
+    console.log('DATA SAVED');
+  }
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyBVWRWi_tOOZ8_QAnNI6Cm4xzJpPP16l20",
+    authDomain: "resume-builder-app-994e9.firebaseapp.com",
+    databaseURL: "https://resume-builder-app-994e9.firebaseio.com",
+    projectId: "resume-builder-app-994e9",
+    storageBucket: "resume-builder-app-994e9.appspot.com",
+    messagingSenderId: "612688089101",
+    appId: "1:612688089101:web:72db8f9ffc8408b50a4544",
+    measurementId: "G-TRZ05TVQQ6"
+   };
+
+ 
+  
 
   return (
     <div>
@@ -95,6 +128,9 @@ const ProfileTab = ({ data, onChange }) => {
       />
     </div>
   );
+
+
+ 
 };
 
 export default ProfileTab;
