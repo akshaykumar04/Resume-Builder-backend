@@ -39,8 +39,22 @@ const Pikachu = () => {
 
   const ContactItem = ({ icon, value, link = '#' }) =>
     value && (
-      <div className="flex items-center my-3">
-        <span className="material-icons text-lg mr-2" style={{ color: theme.colors.accent }}>
+      <div
+        className="flex items-center my-3"
+        style={{
+          marginTop: '0.75rem',
+          marginBottom: '0.75rem',
+          display: 'inline-block',
+          marginRight: '20px',
+          marginLeft: '2rem',
+          textAlign: 'center',
+        }}
+      >
+        {/* style={{ display:'inline-block', marginRight:'70px', textAlign:'center'}} */}
+        {/* display: inline-block;
+        margin-right: 70px;
+        text-align:'center'; */}
+        <span className="material-icons text-lg mr-2" style={{ color: 'white' }}>
           {icon}
         </span>
         <a href={link}>
@@ -60,10 +74,10 @@ const Pikachu = () => {
 
   const SkillItem = x => (
     <span
-      key={x}
+      key={x.id}
       className="leading-none rounded-lg text-sm font-medium bg-gray-300 py-3 my-1 px-4"
     >
-      {x}
+      {x.skill}
     </span>
   );
 
@@ -78,10 +92,10 @@ const Pikachu = () => {
 
   const HobbyItem = x => (
     <span
-      key={x}
+      key={x.id}
       className="leading-none rounded-lg text-sm font-medium bg-gray-300 py-3 my-1 px-4"
     >
-      {x}
+      {x.hobby}
     </span>
   );
 
@@ -264,45 +278,52 @@ const Pikachu = () => {
         color: theme.colors.primary,
       }}
     >
+
       <div className="grid grid-cols-12 col-gap-6 row-gap-8">
-        <Photo />
+      <div className='col-span-12 header-name'>
 
-        <div className={`${data.profile.photo !== '' ? 'col-span-8' : 'col-span-12'}`}>
-          <Header />
-        </div>
 
-        <div className="col-span-4 overflow-hidden">
-          <div className="text-sm mb-6">
-            <ContactItem
-              icon="phone"
-              value={data.profile.phone}
-              link={`tel:${data.profile.phone}`}
-            />
-            <ContactItem
-              icon="language"
-              value={data.profile.website}
-              link={`http://${data.profile.website}`}
-            />
-            <ContactItem
-              icon="email"
-              value={data.profile.email}
-              link={`mailto:${data.profile.email}`}
-            />
+      </div>
+        <div className="col-span-12 overflow-hidden header-name" style={{ textAlign:'center' }}>
+        <Header />
+          <div className="text-sm mb-6" style={{  color: 'white', backgroundColor: 'black' }}>
+          {/* color: white;
+          background-color: black; */}
+              <ContactItem
+                icon="phone"
+                value={data.profile.phone}
+                link={`tel:${data.profile.phone}`}
+              />
+              <ContactItem
+                icon="language"
+                value={data.profile.website}
+                link={`http://${data.profile.website}`}
+              />
+              <ContactItem
+                icon="email"
+                value={data.profile.email}
+                link={`mailto:${data.profile.email}`}
+              />
             <ContactItem icon="location_on" value={data.profile.address.line3} />
-          </div>
 
-          <Skills />
-          <Hobbies />
-          <Languages />
-          <Certifications />
+
         </div>
+       </div>
 
-        <div className="col-span-8">
+        <div className="col-span-8 overflow-hidden">
+
           <Work />
           <Education />
           <Awards />
           <References />
           <Extras />
+        </div>
+
+        <div className="col-span-4">
+        <Skills />
+          <Hobbies />
+          <Languages />
+          <Certifications />
         </div>
       </div>
     </div>

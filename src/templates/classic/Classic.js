@@ -14,10 +14,11 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'start',
-    color: 'white',
-    backgroundColor: '#222',
+    color: 'black',
+    backgroundColor: 'white',
     height: '160px',
-    paddingLeft: '270px',
+    paddingLeft: '200px',
+    borderBottom: '2px solid black'
   },
   section: {
     marginTop: '167px',
@@ -74,26 +75,25 @@ const Celebi = () => {
       </div>
     );
 
-  const ContactItem = ({ label, value }) =>
-    value && (
-      <div className="mb-3">
-        <h6 className="text-xs font-bold">{label}</h6>
-        <p className="text-sm">{value}</p>
-      </div>
-    );
+  const ContactItem = ({ icon, value, link = '#' }) =>
+  value && (
+    <div className="items-center">
+      <span className="material-icons text-lg mr-2" style={{ color: 'black' }}>
+        {icon}
+      </span>
+      <a href={link}>
+        <span className="font-medium break-all">{value}</span>
+      </a>
+    </div>
+  );
+
 
   const Contact = () => (
     <div className="mb-6">
       <Heading title="Contact" className="mt-8 w-3/4 mx-auto" />
-      <div className="mb-3">
-        <h6 className="text-xs font-bold">Address</h6>
-        <p className="text-sm">{data.profile.address.line1}</p>
-        <p className="text-sm">{data.profile.address.line2}</p>
-        <p className="text-sm">{data.profile.address.line3}</p>
-      </div>
-      <ContactItem label="Phone" value={data.profile.phone} />
-      <ContactItem label="Email Address" value={data.profile.email} />
-      <ContactItem label="Website" value={data.profile.website} />
+      <ContactItem icon="phone" value={data.profile.phone} />
+      <ContactItem icon="email" value={data.profile.email} />
+      <ContactItem icon="language" value={data.profile.website} />
     </div>
   );
 
@@ -272,27 +272,28 @@ const Celebi = () => {
         color: theme.colors.primary,
       }}
     >
+      <div className="grid grid-cols-12 text-center">
+      <Header />
+      </div>
       <div className="grid grid-cols-12">
         <div
           className="sidebar col-span-4 pb-8 ml-8 z-10 text-center"
-          style={{ backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)` }}
+          style={{ backgroundColor: '', marginTop: '160px', borderRight: '2px solid black' }}
         >
-          <Photo />
           <Contact />
-          <Skills />
-          <Hobbies />
+          {/* <Skills /> */}
+          <Education />
+          <Awards />
+          {/* <Hobbies />
           <Languages />
           <Certifications />
-          <Extras />
+          <Extras /> */}
         </div>
         <div className="col-span-8">
-          <Header />
 
           <section className="py-4" style={styles.section}>
             <Objective />
             <Work />
-            <Education />
-            <Awards />
             <References />
           </section>
         </div>
