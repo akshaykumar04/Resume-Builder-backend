@@ -23,31 +23,31 @@ const Onyx = () => {
       <h1 className="font-bold text-4xl" style={{ color: theme.colors.accent }}>
         {data.profile.firstName} {data.profile.lastName}
       </h1>
-      <h6 className="font-medium text-sm">{data.profile.subtitle}</h6>
+      <h6 className="font-medium text-sm">{data.profile.email} | {data.profile.phone} | {data.profile.address.line1} </h6>
 
-      <div className="flex flex-col mt-4 text-xs">
+      {/* <div className="flex flex-col mt-4 text-xs">
         <span>{data.profile.address.line1}</span>
         <span>{data.profile.address.line2}</span>
         <span>{data.profile.address.line3}</span>
-      </div>
+      </div> */}
     </div>
   );
 
-  const ContactItem = ({ icon, value, link = '#' }) =>
-    value && (
-      <div className="flex items-center my-3">
-        <span className="material-icons text-lg mr-2" style={{ color: theme.colors.accent }}>
-          {icon}
-        </span>
-        <a href={link}>
-          <span className="font-medium break-all">{value}</span>
-        </a>
-      </div>
-    );
+  // const ContactItem = ({ icon, value, link = '#' }) =>
+  //   value && (
+  //     <div className="flex items-center my-3">
+  //       <span className="material-icons text-lg mr-2" style={{ color: theme.colors.accent }}>
+  //         {icon}
+  //       </span>
+  //       <a href={link}>
+  //         <span className="font-medium break-all">{value}</span>
+  //       </a>
+  //     </div>
+  //   );
 
   const Heading = ({ title }) => (
-    <h6 className="text-xs font-bold uppercase mt-6 mb-2" style={{ color: theme.colors.accent }}>
-      {title}
+    <h6 className="text-xs font-bold uppercase mt-6 mb-2" style={{ color: 'black', backgroundColor:theme.colors.accent }}>
+      <div style={{ paddingLeft: '10px' , fontSize:'10px'}}>{title}</div>
     </h6>
   );
 
@@ -62,16 +62,27 @@ const Onyx = () => {
 
   const WorkItem = x => (
     <div key={x.id} className="mt-3">
+      <div class="grid grid-cols-2 gap-4">
       <div className="flex justify-between">
         <div>
-          <h6 className="font-semibold">{x.title}</h6>
-          <p className="text-xs">{x.role}</p>
+          <h6 className="text-xs">{x.title}</h6>
+          <p className="font-semibold">{x.role}</p>
+          <p className="text-xs">({x.start} - {x.end})</p>
         </div>
-        <span className="text-xs font-medium">
-          ({x.start} - {x.end})
-        </span>
+          <span className="text-xs font-medium">
+          </span>
+        </div>
+        <div>
+
+          <span>
+            <p>          <ul><li>
+              {x.description}
+              </li></ul></p>   
+          </span>
+
+        </div>
       </div>
-      <ReactMarkdown className="mt-2 text-sm" source={x.description} />
+
     </div>
   );
 
@@ -146,16 +157,9 @@ const Onyx = () => {
     );
 
   const HobbyItem = x => (
-    <span
-      key={x}
-      className="text-xs rounded-full px-3 py-1 font-medium my-2 mr-2"
-      style={{
-        backgroundColor: theme.colors.primary,
-        color: theme.colors.background,
-      }}
-    >
-      {x}
-    </span>
+      <li>
+        {x.hobby}
+      </li>
   );
 
   const Hobbies = () =>
@@ -163,21 +167,14 @@ const Onyx = () => {
     data.hobbies.enable && (
       <div>
         <Heading title={data.hobbies.heading} />
-        <div className="mt-1 flex flex-wrap">{data.hobbies.items.map(HobbyItem)}</div>
+        <ul style={{ WebkitColumnCount:2, MozColumnCount:2, columnCount: 2, columnGap:'30px' }}>{data.hobbies.items.map(HobbyItem)}</ul>
       </div>
     );
 
   const SkillItem = x => (
-    <span
-      key={x}
-      className="text-xs rounded-full px-3 py-1 font-medium my-2 mr-2"
-      style={{
-        backgroundColor: theme.colors.primary,
-        color: theme.colors.background,
-      }}
-    >
-      {x}
-    </span>
+    // <div key={x.id}   style={{ WebkitColumnCount:3, MozColumnCount:3, columnCount: 3 }}>
+      <li>{x.skill}</li>  
+    //  </div>
   );
 
   const Skills = () =>
@@ -185,7 +182,7 @@ const Onyx = () => {
     data.skills.enable && (
       <div>
         <Heading title={data.skills.heading} />
-        <div className="mt-1 flex flex-wrap">{data.skills.items.map(SkillItem)}</div>
+        <ul style={{ WebkitColumnCount:2, MozColumnCount:2, columnCount: 2, columnGap:'30px' }}>{data.skills.items.map(SkillItem)}</ul>
       </div>
     );
 
@@ -265,12 +262,12 @@ const Onyx = () => {
       }}
     >
       <div className="grid grid-cols-4 items-center">
-        <div className="col-span-3 flex items-center">
-          <Photo />
+        <div className="col-span-12 items-center" style={{ textAlign: "center" }}>
+          {/* <Photo /> */}
           <Profile />
         </div>
 
-        <div className="col-span-1 text-xs">
+        {/* <div className="col-span-1 text-xs">
           <ContactItem icon="phone" value={data.profile.phone} link={`tel:${data.profile.phone}`} />
           <ContactItem
             icon="language"
@@ -283,7 +280,7 @@ const Onyx = () => {
             link={`mailto:${data.profile.email}`}
           />
           <ContactItem icon="location_on" value={data.profile.address.line3} />
-        </div>
+        </div> */}
       </div>
 
       <hr className="my-6" />
@@ -296,11 +293,9 @@ const Onyx = () => {
         <Awards />
         <Certifications />
       </div>
+      <Skills />
 
-      <div className="grid grid-cols-2 gap-6">
-        <Skills />
         <Hobbies />
-      </div>
 
       <References />
 

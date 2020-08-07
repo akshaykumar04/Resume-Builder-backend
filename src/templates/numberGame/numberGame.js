@@ -25,7 +25,7 @@ const styles = {
   },
 };
 
-const Celebi = () => {
+const NumberGame = () => {
   const context = useContext(AppContext);
   const { state } = context;
   const { data, theme } = state;
@@ -42,16 +42,11 @@ const Celebi = () => {
 
   const Photo = () =>
     data.profile.photo !== '' && (
-      <div className="relative z-40">
-        <img
-          className="w-full object-cover object-center"
-          src={data.profile.photo}
-          alt="Resume Photograph"
-          style={{
-            height: '160px',
-          }}
-        />
-      </div>
+      <img
+        className="w-40 h-40 rounded-full mx-auto"
+        src={data.profile.photo}
+        alt="Resume Photograph"
+      />
     );
 
   const Header = () => (
@@ -65,6 +60,32 @@ const Celebi = () => {
     </header>
   );
 
+  const ContactItem = ({ icon, value, link = '#' }) =>
+  value && (
+    <div
+      className="flex items-center my-3"
+      style={{
+        marginTop: '0.75rem',
+        marginBottom: '0.75rem',
+        display: 'inline-block',
+        marginRight: '20px',
+        marginLeft: '2rem',
+        textAlign: 'center',
+      }}
+    >
+      {/* style={{ display:'inline-block', marginRight:'70px', textAlign:'center'}} */}
+      {/* display: inline-block;
+      margin-right: 70px;
+      text-align:'center'; */}
+      <span className="material-icons text-lg mr-2">
+        {icon}
+      </span>
+      <a href={link}>
+        <span className="font-medium break-all">{value}</span>
+      </a>
+    </div>
+  );
+
   const Objective = () =>
     data.objective &&
     data.objective.enable && (
@@ -74,23 +95,10 @@ const Celebi = () => {
       </div>
     );
 
-  const ContactItem = ({ label, value }) =>
-    value && (
-      <div className="mb-3">
-        <h6 className="text-xs font-bold">{label}</h6>
-        <p className="text-sm">{value}</p>
-      </div>
-    );
 
   const Contact = () => (
     <div className="mb-6">
       <Heading title="Contact" className="mt-8 w-3/4 mx-auto" />
-      <div className="mb-3">
-        <h6 className="text-xs font-bold">Address</h6>
-        <p className="text-sm">{data.profile.address.line1}</p>
-        <p className="text-sm">{data.profile.address.line2}</p>
-        <p className="text-sm">{data.profile.address.line3}</p>
-      </div>
       <ContactItem label="Phone" value={data.profile.phone} />
       <ContactItem label="Email Address" value={data.profile.email} />
       <ContactItem label="Website" value={data.profile.website} />
@@ -275,10 +283,31 @@ const Celebi = () => {
       <div className="grid grid-cols-12">
         <div
           className="sidebar col-span-4 pb-8 ml-8 z-10 text-center"
-          style={{ backgroundColor: `rgba(${r}, ${g}, ${b}, 0.1)` }}
+          style={{ backgroundColor: '#DCDAF8' }}
         >
           <Photo />
-          <Contact />
+          <div className="text-sm mb-6" style={{ marginTop: '20px' }}>
+          {/* color: white;
+          background-color: black; */}
+              <ContactItem
+                icon="phone"
+                value={data.profile.phone}
+                link={`tel:${data.profile.phone}`}
+              />
+              <ContactItem
+                icon="language"
+                value={data.profile.website}
+                link={`http://${data.profile.website}`}
+              />
+              <ContactItem
+                icon="email"
+                value={data.profile.email}
+                link={`mailto:${data.profile.email}`}
+              />
+            <ContactItem icon="location_on" value={data.profile.address.line3} />
+
+
+        </div>
           <Skills />
           <Hobbies />
           <Languages />
@@ -301,4 +330,4 @@ const Celebi = () => {
   );
 };
 
-export default Celebi;
+export default NumberGame;
