@@ -46,7 +46,7 @@ const Onyx = () => {
   //   );
 
   const Heading = ({ title }) => (
-    <h6 className="text-xs font-bold uppercase mt-6 mb-2" style={{ color: theme.colors.accent, backgroundColor:'orange' }}>
+    <h6 className="text-xs font-bold uppercase mt-6 mb-2" style={{ color: 'black', backgroundColor:theme.colors.accent }}>
       <div style={{ paddingLeft: '10px' , fontSize:'10px'}}>{title}</div>
     </h6>
   );
